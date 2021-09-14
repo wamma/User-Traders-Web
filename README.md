@@ -1,4 +1,4 @@
-# usertradersfront
+# usertraders-front
 
 ## Project setup
 ```
