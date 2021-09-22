@@ -1,11 +1,8 @@
 <template>
 	<div>
-		<br />
-		<br />
-		<br />
-		<v-card class="mx-auto" height="auto" align="center"></v-card>
+		<v-card class="pt-16" height="auto" align="center"></v-card>
 		<v-card class="mx-auto overflow-hidden" height="auto">
-			<v-toolbar color="white">
+			<v-toolbar class="px-16" color="white">
 				<v-text-field
 					label="search"
 					hide-details

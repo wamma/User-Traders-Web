@@ -71,6 +71,13 @@
 									</v-list-item-title>
 								</v-list-item-content>
 							</v-list-item>
+							<v-list-item
+								id="kakao-talk-channel-add-button"
+								data-channel-public-id="_paeus"
+								data-size="small"
+								data-support-multiple-densities="true"
+							>
+							</v-list-item>
 						</v-list>
 					</v-menu>
 				</div>
@@ -121,7 +128,7 @@
 			<router-view></router-view>
 		</v-main>
 		<v-bottom-navigation height="60" style="" color="#ff6d00" fixed>
-			<v-btn :to="{ name: 'Home1' }">
+			<v-btn :to="{ name: 'Home' }">
 				<span style="color : #00000099; font-size : medium">홈</span>
 				<v-icon large>mdi-home</v-icon>
 			</v-btn>
@@ -150,14 +157,6 @@
 					<v-icon large color="blue">mdi-plus-circle-outline</v-icon></v-btn
 				>
 				<v-overlay :absolute="absolute" :value="overlay">
-					<div
-						id="kakao-talk-channel-add-button"
-						data-channel-public-id="_paeus"
-						data-size="small"
-						data-support-multiple-densities="true"
-					>
-						asdas
-					</div>
 					<v-btn color="success" @click="overlay = false">
 						Hide Overlay
 					</v-btn>
