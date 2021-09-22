@@ -3,18 +3,16 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import './assets/scss/main.scss';
+import alert from './plugins/alert';
 import vuetify from './plugins/vuetify';
-import UserComponent from './components/User';
+import Vuetify from 'vuetify/lib';
 
-Vue.component('User', UserComponent);
+import Vuelidate from 'vuelidate';
+Vue.use(Vuelidate);
 
-export const eventBus = new Vue({
-	methods: {
-		userWasEdited(date) {
-			this.$emit('userWasEdited', date);
-		},
-	},
-});
+Vue.use(Vuetify);
+export const eventBus = new Vue();
+Vue.use(alert);
 Vue.config.productionTip = false;
 
 new Vue({
