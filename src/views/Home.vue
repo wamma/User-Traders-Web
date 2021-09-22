@@ -16,7 +16,7 @@
 							<v-card class="mx-auto" max-width="344">
 								<div @click="detailPush(item.id)">
 									<v-img
-										v-bind:src="item.imageurl1 | loadImgOrPlaceholder"
+										v-bind:src="item.thumbnail"
 										:aspect-ratio="11 / 8"
 										height="mx-auto"
 									>
@@ -31,30 +31,33 @@
 								</div>
 								<v-card-text class="pt-6" style="position: relative;">
 									<h3 class=" font-weight-bold orange--text mb-2">
-										{{ item.category.name }} : {{ item.title }}
+										{{ item.categoryId.name }}/{{
+											item.categoryId.subCategoryId.name
+										}}
+										: {{ item.title }}
 									</h3>
-									<h4>작성자: {{ item.user.name }}</h4>
+									<h4>{{ item.userId.nickName }}</h4>
 
 									<div class="font-weight-medium title mb-2">
 										{{ item.price | moneyFilter }} won
 									</div>
 									<div style="width: 100%">
 										<div style="width: 50%; float: left">
-											{{ item.createdDate | timeForToday }}
+											{{ item.createAt | timeForToday }}
 										</div>
 										<div style="margin-left: 50%; text-align: right">
 											<v-icon>
-												mdi-cart
+												mdi-comment-text-multiple
 											</v-icon>
-											{{ item.cartcount }}
+											{{ item.commentCount }}
 											<v-icon>
 												mdi-heart
 											</v-icon>
-											{{ item.likecount }}
+											{{ item.likeCount }}
 											<v-icon>
 												mdi-eye-outline
 											</v-icon>
-											{{ item.viewcount }}
+											{{ item.views }}
 										</div>
 									</div>
 								</v-card-text>
@@ -68,7 +71,13 @@
 			@infinite="infiniteHandler"
 			spinner="waveDots"
 			forceUseInfiniteWrapper
-		></infinite-loading>
+			><div slot="no-more" class="ma-10">
+				더이상 게시물이 존재하지 않습니다.
+			</div>
+			<div slot="no-results" class="ma-10">
+				존재 하지 않습니다.
+			</div></infinite-loading
+		>
 		<br />
 		<br />
 		<br />
@@ -82,6 +91,9 @@ import http from '@/utils/http';
 import dateFormatter from '@/mixin/dateFormatter';
 
 export default {
+	created() {
+		console.log('시작!');
+	},
 	mixins: [dateFormatter],
 	data() {
 		return {
@@ -100,20 +112,22 @@ export default {
 	methods: {
 		infiniteHandler($state) {
 			http
-				.process('user', 'listInfinte', {
+				.process('boards', 'listPagenation', {
 					limit: this.limit,
 				})
 				.then((res) => {
+					console.log(res.boardResponseDtoList);
+					console.log(res.boardResponseDtoList.length);
 					setTimeout(() => {
-						if (res.length) {
-							this.listData = this.listData.concat(res);
+						if (res.boardResponseDtoList.length) {
+							this.listData = this.listData.concat(res.boardResponseDtoList);
 							$state.loaded();
 							this.limit += 1;
 						} else {
 							$state.complete();
 							/*alert("더 이상 목록이 존재하지 않습니다.")*/
 						}
-					}, 1000);
+					}, 500);
 				})
 				.catch((err) => {
 					console.log(err);

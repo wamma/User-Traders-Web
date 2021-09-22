@@ -50,6 +50,8 @@ const http = {
 					method = 'post';
 				} else if (info.task == 'put') {
 					method = 'put';
+				} else if (info.task == 'patch') {
+					method = 'patch';
 				} else if (info.task == 'delete') {
 					method = 'delete';
 				}
