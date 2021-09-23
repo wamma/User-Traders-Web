@@ -10,8 +10,15 @@
 				>
 					<div>
 						<v-hover v-slot="{ hover }">
-							<v-card class="mx-auto" max-width="344">
+							<v-card class="ma-2" max-width="344">
 								<div @click="detailPush(item.id)">
+									<div style="text-align : left; color : #fc9942">
+										<v-icon class="pr-2 pl-2" title="카테고리" color="#fc9942">
+											mdi-tag
+										</v-icon>
+										{{ item.categoryId.subCategoryId.name }} >
+										{{ item.categoryId.name }}
+									</div>
 									<v-img
 										v-bind:src="item.thumbnail"
 										:aspect-ratio="11 / 8"
@@ -20,44 +27,159 @@
 										<v-expand-transition>
 											<div
 												v-if="hover"
-												class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
+												class="d-flex transition-fast-in-fast-out orange 
+												lighten-2 darken-2 v-card--reveal display-3 white--text"
 												style="height: 100%;"
 											></div>
 										</v-expand-transition>
 									</v-img>
 
-									<v-card-text class="pt-3" style="position: relative;">
+									<v-card-text class="pa-1" style="position: relative;">
 										<v-card-text
-											><div style="width: 100%">
-												<div style="width: 50%; float: left">
-													<h5>{{ item.userId.nickName }}</h5>
-												</div>
-												<div style="margin-left: 50%; text-align: right">
-													<h3 color="343a40" class=" font-weight-bold mb-2">
-														<div style="border:solid">
-															{{ item.categoryId.subCategoryId.name }}/{{
-																item.categoryId.name
-															}}
-														</div>
-													</h3>
-												</div>
-											</div></v-card-text
-										>
-										<v-card-title
-											><div>{{ item.title }}</div></v-card-title
-										>
-										<v-card-subtitle>
-											<div class="font-weight-medium mb-2">
-												{{ item.price | moneyFilter }} won
-											</div>
-										</v-card-subtitle>
+											style="border-bottom:solid; border-width:0.5px; border-color: #cccccc;"
+											><div style="height: 56px; width: 100% ">
+												<div style="width: 50%; float: left; ">
+													<div>
+														<v-list-item-avatar>
+															<v-img v-bind:src="item.userId.imagePath"></v-img>
+														</v-list-item-avatar>
 
-										<v-card-text>
-											<div style="width: 100%">
-												<div style="width: 50%; float: left">
+														{{ item.userId.nickName }}
+													</div>
+												</div>
+												<div
+													v-if="item.status == 0"
+													class="light-blue--text"
+													style="margin-left: 50%; text-align: right;"
+													title="판매중"
+												>
+													{{ item.status | tradeStatus }}
+													<v-icon
+														v-if="item.grade == 0"
+														color="#ff0008"
+														title="새상품"
+													>
+														mdi-new-box
+													</v-icon>
+													<v-icon
+														v-if="item.grade == 1"
+														color="#fc0558"
+														title="S급"
+													>
+														mdi-alpha-s-box
+													</v-icon>
+													<v-icon
+														v-else-if="item.grade == 2"
+														color="#e39a07"
+														title="A급"
+													>
+														mdi-alpha-a-box
+													</v-icon>
+													<v-icon
+														v-else-if="item.grade == 3"
+														color="#a6a5a2"
+														title="B급"
+													>
+														mdi-alpha-b-box
+													</v-icon>
+												</div>
+												<div
+													v-else-if="item.status == 1"
+													class="orange--text"
+													style="margin-left: 50%; text-align: right;"
+													title=""
+												>
+													{{ item.status | tradeStatus }}
+													<v-icon
+														v-if="item.grade == 0"
+														color="#ff0008"
+														title="새상품"
+													>
+														mdi-new-box
+													</v-icon>
+													<v-icon
+														v-if="item.grade == 1"
+														color="#fc0558"
+														title="S급"
+													>
+														mdi-alpha-s-box
+													</v-icon>
+													<v-icon
+														v-else-if="item.grade == 2"
+														color="#e39a07"
+														title="A급"
+													>
+														mdi-alpha-a-box
+													</v-icon>
+													<v-icon
+														v-else-if="item.grade == 3"
+														color="#a6a5a2"
+														title="B급"
+													>
+														mdi-alpha-b-box
+													</v-icon>
+												</div>
+												<div
+													v-else-if="item.status == 2"
+													class="gray--text"
+													style="margin-left: 50%; text-align: right;"
+													title=""
+												>
+													{{ item.status | tradeStatus }}
+													<v-icon
+														v-if="item.grade == 0"
+														color="#ff0008"
+														title="새상품"
+													>
+														mdi-new-box
+													</v-icon>
+													<v-icon
+														v-if="item.grade == 1"
+														color="#fc0558"
+														title="S급"
+													>
+														mdi-alpha-s-box
+													</v-icon>
+													<v-icon
+														v-else-if="item.grade == 2"
+														color="#e39a07"
+														title="A급"
+													>
+														mdi-alpha-a-box
+													</v-icon>
+													<v-icon
+														v-else-if="item.grade == 3"
+														color="#a6a5a2"
+														title="B급"
+													>
+														mdi-alpha-b-box
+													</v-icon>
+												</div>
+											</div>
+										</v-card-text>
+										<v-card-text class="mt-2 pa-3">
+											<div
+												class="font-weight-medium"
+												style="font-size:x-large; font-weight:bold"
+											>
+												{{ item.title }}
+											</div>
+										</v-card-text>
+										<v-card-text class="pa-3">
+											<div
+												class="font-weight-medium float-right "
+												style="font-size:large;"
+											>
+												{{ item.price | moneyFilter }} 원
+											</div>
+										</v-card-text>
+
+										<v-card-text class="mt-2 pa-3">
+											<div style="width: 100%;">
+												<div style="width: 20%; float: left">
 													{{ item.createAt | timeForToday }}
 												</div>
-												<div style="margin-left: 50%; text-align: right">
+												<div style="margin-left: 20%; text-align: right">
 													<v-icon color="green">
 														mdi-comment-text-multiple
 													</v-icon>
@@ -70,6 +192,10 @@
 														mdi-eye-outline
 													</v-icon>
 													{{ item.views }}
+													<v-icon color="yellow">
+														mdi-chat-processing
+													</v-icon>
+													{{ item.chatCount }}
 												</div>
 											</div>
 										</v-card-text>

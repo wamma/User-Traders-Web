@@ -31,10 +31,13 @@ let dateFormat = {
 			return `${Math.floor(betweenTimeDay / 365)}년전`;
 		},
 		tradeStatus: function(value) {
-			if (value == true) {
+			if (value == 0) {
 				return '판매중';
+			} else if (value == 1) {
+				return '예약중';
+			} else {
+				return '판매완료';
 			}
-			return '판매완료';
 		},
 	},
 };
