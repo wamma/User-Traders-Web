@@ -1,10 +1,7 @@
 <template>
 	<div>
 		<v-container v-if="listData" three-line>
-			<br />
-			<br />
-			<br />
-			<v-row>
+			<v-row class="mt-16">
 				<v-col
 					v-for="(item, i) in listData"
 					:key="`item-${i}`"
@@ -28,39 +25,56 @@
 											></div>
 										</v-expand-transition>
 									</v-img>
-								</div>
-								<v-card-text class="pt-6" style="position: relative;">
-									<h3 class=" font-weight-bold orange--text mb-2">
-										{{ item.categoryId.name }}/{{
-											item.categoryId.subCategoryId.name
-										}}
-										: {{ item.title }}
-									</h3>
-									<h4>{{ item.userId.nickName }}</h4>
 
-									<div class="font-weight-medium title mb-2">
-										{{ item.price | moneyFilter }} won
-									</div>
-									<div style="width: 100%">
-										<div style="width: 50%; float: left">
-											{{ item.createAt | timeForToday }}
-										</div>
-										<div style="margin-left: 50%; text-align: right">
-											<v-icon>
-												mdi-comment-text-multiple
-											</v-icon>
-											{{ item.commentCount }}
-											<v-icon>
-												mdi-heart
-											</v-icon>
-											{{ item.likeCount }}
-											<v-icon>
-												mdi-eye-outline
-											</v-icon>
-											{{ item.views }}
-										</div>
-									</div>
-								</v-card-text>
+									<v-card-text class="pt-3" style="position: relative;">
+										<v-card-text
+											><div style="width: 100%">
+												<div style="width: 50%; float: left">
+													<h5>{{ item.userId.nickName }}</h5>
+												</div>
+												<div style="margin-left: 50%; text-align: right">
+													<h3 color="343a40" class=" font-weight-bold mb-2">
+														<div style="border:solid">
+															{{ item.categoryId.subCategoryId.name }}/{{
+																item.categoryId.name
+															}}
+														</div>
+													</h3>
+												</div>
+											</div></v-card-text
+										>
+										<v-card-title
+											><div>{{ item.title }}</div></v-card-title
+										>
+										<v-card-subtitle>
+											<div class="font-weight-medium mb-2">
+												{{ item.price | moneyFilter }} won
+											</div>
+										</v-card-subtitle>
+
+										<v-card-text>
+											<div style="width: 100%">
+												<div style="width: 50%; float: left">
+													{{ item.createAt | timeForToday }}
+												</div>
+												<div style="margin-left: 50%; text-align: right">
+													<v-icon color="green">
+														mdi-comment-text-multiple
+													</v-icon>
+													{{ item.commentCount }}
+													<v-icon color="red">
+														mdi-heart
+													</v-icon>
+													{{ item.likeCount }}
+													<v-icon color="blue">
+														mdi-eye-outline
+													</v-icon>
+													{{ item.views }}
+												</div>
+											</div>
+										</v-card-text>
+									</v-card-text>
+								</div>
 							</v-card>
 						</v-hover>
 					</div>

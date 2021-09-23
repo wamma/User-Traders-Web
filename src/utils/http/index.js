@@ -69,7 +69,12 @@ const http = {
 						headers: header,
 					};
 					p = axiosInstance[method](newUrl, opt);
-				} else if (method == 'post' || method == 'put' || method == 'delete') {
+				} else if (
+					method == 'post' ||
+					method == 'put' ||
+					method == 'patch' ||
+					method == 'delete'
+				) {
 					p = axiosInstance[method](newUrl, newParmas, {
 						headers: header,
 					});

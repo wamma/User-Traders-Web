@@ -27,12 +27,12 @@ export default {
 		list: { task: 'get', url: '/carts/list' },
 		remove: { task: 'delete', url: '/carts/list/delete/#id' },
 	},
-	mail: {
-		send: { task: 'post', url: '/messages/send' },
-		sent: { task: 'get', url: '/messages/list/user/sent' },
-		recv: { task: 'get', url: '/messages/list/user/recv' },
-		sentid: { task: 'get', url: '/messages/list/user/sent' },
-		recvid: { task: 'get', url: '/messages/list/user/recv' },
-		count: { task: 'get', url: '/messages//list/user/recv/count' },
-	},
+	// mail: {
+	// 	send: { task: 'post', url: '/messages/send' },
+	// 	sent: { task: 'get', url: '/messages/list/user/sent' },
+	// 	recv: { task: 'get', url: '/messages/list/user/recv' },
+	// 	sentid: { task: 'get', url: '/messages/list/user/sent' },
+	// 	recvid: { task: 'get', url: '/messages/list/user/recv' },
+	// 	count: { task: 'get', url: '/messages//list/user/recv/count' },
+	// },
 };
