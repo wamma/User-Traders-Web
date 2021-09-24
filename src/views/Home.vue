@@ -228,13 +228,13 @@
 import { mapActions } from 'vuex';
 import InfiniteLoading from 'vue-infinite-loading';
 import http from '@/utils/http';
-import dateFormatter from '@/mixin/dateFormatter';
+import Formatter from '@/mixin/Formatter';
 
 export default {
 	created() {
 		console.log('시작!');
 	},
-	mixins: [dateFormatter],
+	mixins: [Formatter],
 	data() {
 		return {
 			limit: 1,
@@ -256,8 +256,6 @@ export default {
 					limit: this.limit,
 				})
 				.then((res) => {
-					console.log(res.boardResponseDtoList);
-					console.log(res.boardResponseDtoList.length);
 					setTimeout(() => {
 						if (res.boardResponseDtoList.length) {
 							this.listData = this.listData.concat(res.boardResponseDtoList);

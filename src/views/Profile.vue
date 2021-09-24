@@ -169,11 +169,11 @@
 </template>
 <script>
 import http from '@/utils/http';
-import dateFormatter from '@/mixin/dateFormatter';
+import Formatter from '@/mixin/Formatter';
 import { userTokenValid } from '@/api/userValid';
 import { mapActions } from 'vuex';
 export default {
-	mixins: [dateFormatter],
+	mixins: [Formatter],
 	data() {
 		return {
 			userBList: [],

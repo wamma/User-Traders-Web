@@ -7,37 +7,65 @@ const state = {
 
 const getters = {};
 const actions = {
+	//로그인
 	postUserLogin({ commit }, loginObj) {
 		return http
 			.process('user', 'login', loginObj)
 			.then((res) => {
-				commit('setLoginTokken', res);
-				localStorage.setItem('user', res);
-				http
-					.process('user', 'userinfo', null, { token: res })
-					.then((res) => {
-						console.log(res);
-						commit('setUserInfo', res);
-						alert('로그인 되었습니다.');
-						router.go({ name: 'Home' });
-					})
-					.catch((err) => {
-						console.log(err);
-					});
+				console.log(res.user);
+				console.log(res.payload.message + '@@@');
+				if (res.payload.message == '로그인에 성공하였습니다.') {
+					commit('setLoginToken', res.token);
+					localStorage.setItem('user', res.user);
+
+					console.log(localStorage.getItem('user'));
+
+					http
+						.process('user', 'userinfo', null, { token: res.token })
+						.then((res) => {
+							console.log(res);
+
+							commit('setUserInfo', res);
+							console.log('로그인 되었습니다.');
+							alert('로그인 되었습니다.');
+							router.push({ name: 'Home' }).catch(() => {});
+						})
+						.catch((err) => {
+							console.log(err);
+						});
+				} else if (res.payload.message == '가입 되지 않은 email 입니다.') {
+					console.log('가입 되지 않은 email 입니다.');
+					alert('가입 되지 않은 email 입니다.');
+					commit('logoutState');
+					return router.push({ name: 'UserLogin' }).catch(() => {});
+					// return this.$router.push(this.$route.query.redirect || '/user/login');
+				} else if (res.payload.message == '비밀번호를 잘못 입력 하셨습니다.') {
+					console.log('비밀번호를 잘못 입력 하셨습니다.');
+					alert('비밀번호를 잘못 입력 하셨습니다.');
+					commit('logoutState');
+					return router.push({ name: 'UserLogin' }).catch(() => {});
+					// return this.$router.push(this.$route.query.redirect || '/user/login');
+				}
 			})
 			.catch((err) => {
 				console.log(err);
 				console.log(err.message);
 				if (
-					err.message === '가입되지 않은 E-MAIL 입니다.' ||
-					err.message === '잘못된 비밀번호입니다.'
+					err.message === '가입 되지 않은 email 입니다.' ||
+					err.message === '비밀번호를 잘못 입력 하셨습니다.' ||
+					err.message === '로그인에 실패하였습니다.'
 				) {
 					alert(err.message);
-					this.$router.push(this.$route.query.redirect || '/user/login');
+					commit('logoutState');
+					return router.push({ name: 'UserLogin' }).catch(() => {});
+					// return this.$router.push(this.$route.query.redirect || '/user/login');
 				}
 				commit('logoutState');
+				return router.push({ name: 'UserLogin' }).catch(() => {});
+				// return this.$router.push(this.$route.query.redirect || '/user/login');
 			});
 	},
+	//로그아웃
 	getUserLogout({ commit }) {
 		return http
 			.process('user', 'logout')
@@ -73,7 +101,7 @@ const actions = {
 
 const mutations = {
 	//로그인 성공
-	setLoginTokken(state) {
+	setLoginToken(state) {
 		state.isLogin = true;
 		state.isLoginError = false;
 	},

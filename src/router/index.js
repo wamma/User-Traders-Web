@@ -9,7 +9,7 @@ const Create = () => import('../views/BoardCreate.vue');
 const BoardDetail = () => import('../views/BoardDetail.vue');
 const UserLogin = () => import('../views/UserLogin.vue');
 const SignUp = () => import('../views/SignUp.vue');
-const Mypage = () => import('../views/Mypage.vue');
+const Profile = () => import('../views/Profile.vue');
 const Cart = () => import('../views/Cart.vue');
 const Search = () => import('../views/Search.vue');
 const Empty = () => import('../components/empty/empty.vue');
@@ -39,32 +39,36 @@ const routes = [
 		// props: true
 	},
 
-	// {
-	// 	path: '/user',
-	// 	component: Empty,
-	// 	children: [
-	// 		{
-	// 			path: 'login',
-	// 			name: 'UserLogin',
-	// 			component: UserLogin,
-	// 		},
-	// 		{
-	// 			path: 'signup',
-	// 			name: 'SignUp',
-	// 			component: SignUp,
-	// 		},
-	// 		{
-	// 			path: 'mypage',
-	// 			name: 'Mypage',
-	// 			component: Mypage,
-	// 		},
-	// 		{
-	// 			path: 'cart',
-	// 			name: 'Cart',
-	// 			component: Cart,
-	// 		},
-	// 	],
-	// },
+	{
+		path: '/user',
+		component: Empty,
+		children: [
+			{
+				path: 'login',
+				name: 'UserLogin',
+				component: UserLogin,
+			},
+			{
+				path: 'signup',
+				name: 'SignUp',
+				component: SignUp,
+			},
+			{
+				path: 'profile',
+				name: 'Profile',
+				component: Profile,
+			},
+			{
+				path: 'cart',
+				name: 'Cart',
+				component: Cart,
+			},
+		],
+	},
+	{
+		path: '/*',
+		redirect: { name: 'Home' },
+	},
 ];
 
 const router = new VueRouter({
