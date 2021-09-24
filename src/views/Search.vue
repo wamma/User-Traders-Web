@@ -159,10 +159,10 @@
 </template>
 
 <script>
-import dateFormatter from '@/mixin/dateFormatter';
+import Formatter from '@/mixin/Formatter';
 import http from '@/utils/http';
 export default {
-	mixins: [dateFormatter],
+	mixins: [Formatter],
 	data() {
 		return {
 			isLoading: false,

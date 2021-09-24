@@ -103,9 +103,9 @@
 import { mapState, mapActions } from 'vuex';
 import Loding from './jun-loding.vue';
 import http from '@/utils/http';
-import dateFormatter from '@/mixin/dateFormatter';
+import Formatter from '@/mixin/Formatter';
 export default {
-	mixins: [dateFormatter],
+	mixins: [Formatter],
 	props: ['id'],
 
 	components: {

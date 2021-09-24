@@ -34,17 +34,22 @@
 				<div v-if="!loginflag">
 					<v-menu bottom left>
 						<template v-slot:activator="{ on, attrs }">
-							<v-btn dark icon v-bind="attrs" v-on="on" align-center>
-								<v-icon size="xx-large" color="white"
-									>mdi-account-alert-outline</v-icon
-								>
+							<v-btn
+								dark
+								icon
+								v-bind="attrs"
+								v-on="on"
+								align-center
+								style="border:solid; border-width:2px; border-color: white;"
+							>
+								<v-icon size="xx-large" color="white">mdi-account-alert</v-icon>
 							</v-btn>
 						</template>
 
 						<v-list dense nav>
 							<v-list-item
 								:to="{ name: 'UserLogin' }"
-								active-class="deep-gray--text text--accent-3"
+								active-class="deep-orange--text text--accent-3"
 							>
 								<v-list-item-content>
 									<v-list-item-title
@@ -59,7 +64,7 @@
 
 							<v-list-item
 								:to="{ name: 'SignUp' }"
-								active-class="deep-gray--text text--accent-3"
+								active-class="deep-orange--text text--accent-3"
 							>
 								<v-list-item-content>
 									<v-list-item-title
@@ -85,19 +90,17 @@
 					<v-menu bottom left>
 						<template v-slot:activator="{ on, attrs }">
 							<v-btn dark icon v-bind="attrs" v-on="on">
-								<v-icon size="xx-large" color="green"
-									>mdi-account-check-outline</v-icon
-								>
+								<v-icon size="xx-large" color="green">mdi-account-check</v-icon>
 							</v-btn>
 						</template>
 						<v-list dense nav>
 							<v-list-item
 								active-class="deep-gray--text text--accent-3"
 								style="cursor : pointer"
+								:to="{ name: 'Profile' }"
 							>
 								<v-list-item-content>
 									<v-list-item-title
-										:to="{ name: 'Mypage' }"
 										style="font-size : medium; text-align : center"
 										>내 정보
 										<v-icon large color="white">mdi-information</v-icon>
@@ -133,7 +136,7 @@
 				<v-icon large>mdi-home</v-icon>
 			</v-btn>
 			<div v-if="loginflag">
-				<v-btn :to="{ name: 'Mail' }">
+				<v-btn>
 					<span style="color : #00000099;  font-size : medium">채팅</span>
 					<v-icon large>mdi-chat</v-icon>
 				</v-btn>
@@ -151,7 +154,7 @@
 				</v-btn>
 			</div>
 
-			<div v-if="loginflag">
+			<!-- <div v-if="loginflag">
 				<v-btn @click="overlay = !overlay">
 					<span style="color : #00000099; font-size : medium">카카오톡</span>
 					<v-icon large color="blue">mdi-plus-circle-outline</v-icon></v-btn
@@ -161,7 +164,7 @@
 						Hide Overlay
 					</v-btn>
 				</v-overlay>
-			</div>
+			</div> -->
 		</v-bottom-navigation>
 	</v-app>
 </template>

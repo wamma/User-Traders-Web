@@ -1,4 +1,4 @@
-let dateFormat = {
+let Formatter = {
 	filters: {
 		// loadImgOrPlaceholder: function(path) {
 		// 	return require('@/assets/images/' + path);
@@ -41,4 +41,4 @@ let dateFormat = {
 		},
 	},
 };
-export default dateFormat;
+export default Formatter;

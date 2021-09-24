@@ -79,7 +79,7 @@ const http = {
 						headers: header,
 					});
 				}
-
+				console.log(p);
 				return p
 					.then((response) => {
 						resolve(response.data);
