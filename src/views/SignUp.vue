@@ -164,7 +164,7 @@
                   ></v-text-field>
                 </v-col>
               </v-row>
-              <!-- <h3>성별</h3> -->
+              <h3>성별</h3>
               <v-radio-group
                 v-model="radiogroup"
                 row
@@ -275,12 +275,11 @@ export default {
         return;
       }
 
-      // if (checkEmailString == null || checkEmailString == undefined) {
-
-      //   return;
-      // } else {
-      //   checkEmailString = this.email;
-      // }
+      if (checkEmailString == null || checkEmailString == undefined) {
+        return;
+      } else {
+        checkEmailString = this.email;
+      }
 
       return http
         .process("user", "emailCheck", {
