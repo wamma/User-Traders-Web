@@ -164,7 +164,15 @@
                   ></v-text-field>
                 </v-col>
               </v-row>
-              <h3>성별</h3>
+
+              <v-container fluid>
+                <p>{{ gender || "null" }}</p>
+                <v-radio-group v-model="gender" mandatory>
+                  <v-radio label="남성" value="남성"></v-radio>
+                  <v-radio label="여성" value="여성"></v-radio>
+                </v-radio-group>
+              </v-container>
+              <!-- <h3>성별</h3>
               <v-radio-group
                 v-model="radiogroup"
                 row
@@ -172,7 +180,7 @@
               >
                 <v-radio label="남성" value="man" v-model="gender"></v-radio>
                 <v-radio label="여성" value="woman" v-model="gender"></v-radio>
-              </v-radio-group>
+              </v-radio-group> -->
             </v-container>
           </v-form>
         </div>
@@ -220,7 +228,6 @@ export default {
       isnicknamechecked: 0,
       isemailcheked: false,
       gender: "",
-      radiogroup: "",
 
       rules: {
         required: (input) => !!input || "이메일을 입력해주십시오.",
@@ -260,6 +267,7 @@ export default {
           console.log(err);
         });
     },
+    genderId() {},
 
     getcheckedemail() {
       let checkEmailString = this.email;
