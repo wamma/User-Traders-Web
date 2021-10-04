@@ -32,7 +32,7 @@ export default {
 
     //회원 로그인
     login: { task: "post", url: "/users/login" },
-    signup: { task: "post", url: "/users/signup" },
+    signup: { task: "post", url: "/users/register" },
     emailCheck: { task: "get", url: "/users/email-check" },
     nicknameCheck: { task: "get", url: "/users/nickname-check" },
     //로그아웃  --토큰

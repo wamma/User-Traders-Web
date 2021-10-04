@@ -337,13 +337,25 @@ export default {
       if (this.isemailcheked == true) {
         const temp = this.select.split(" ");
         const department = { id: temp[0] };
+        let genderId = 0;
+        if (this.gender == "남성") {
+          genderId = 0;
+        } else {
+          genderId = 1;
+        }
+
         const userObj = {
-          userid: this.email,
+          email: this.email,
           password: this.password,
           tel: this.number,
-          department: department,
-          name: this.name,
+          departmentId: department,
+          userNamed: this.name,
           nickname: this.nickname,
+          gender: genderId,
+          loginType: 0,
+          //학번은 예정
+
+          studentId: this.studentid,
         };
         return http
           .process("user", "signup", userObj)
